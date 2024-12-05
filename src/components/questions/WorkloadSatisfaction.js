@@ -9,13 +9,10 @@ const WorkloadSatisfaction = () => {
   const [leftPanWeights, setLeftPanWeights] = useState([]);
   const [rightPanWeights, setRightPanWeights] = useState([]);
   const [availableWeights, setAvailableWeights] = useState([1, 2, 3, 4, 5]);
-  const [draggedWeight, setDraggedWeight] = useState(null); // Track the weight being dragged
-  const [dragging, setDragging] = useState(false);
-  const [lastTouchedSide, setLastTouchedSide] = useState(null); // Track the last touched drop zone
+  const [draggedWeight, setDraggedWeight] = useState(null);
 
   const handleDragStart = (e, weightId) => {
     setDraggedWeight(weightId);
-    setDragging(true);
     if (e.dataTransfer) {
       e.dataTransfer.setData("weight", weightId);
     }
@@ -23,44 +20,24 @@ const WorkloadSatisfaction = () => {
 
   const handleDrop = (e, side) => {
     e.preventDefault();
-    const weightId = draggedWeight || parseInt(e.dataTransfer.getData("weight"), 10);
-    if (availableWeights.includes(weightId)) {
+    const weightId =
+      draggedWeight || (e.dataTransfer && parseInt(e.dataTransfer.getData("weight"), 10));
+
+    if (weightId && availableWeights.includes(weightId)) {
       setAvailableWeights((prev) => prev.filter((id) => id !== weightId));
       if (side === "left") {
         setLeftPanWeights((prev) => [...prev, weightId]);
-      } else {
+      } else if (side === "right") {
         setRightPanWeights((prev) => [...prev, weightId]);
       }
     }
     setDraggedWeight(null);
-    setDragging(false);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!dragging || draggedWeight === null) return;
-
-    const touch = e.touches[0];
-    const element = document.elementFromPoint(touch.clientX, touch.clientY);
-
-    if (element && element.dataset && element.dataset.side) {
-      setLastTouchedSide(element.dataset.side); // Track the side being touched
-    }
-  };
-
-  const handleTouchEnd = () => {
-    if (draggedWeight !== null && lastTouchedSide) {
-      // Finalize the drop on the last touched side
-      handleDrop({ preventDefault: () => {} }, lastTouchedSide);
-    }
-    setDraggedWeight(null);
-    setDragging(false);
-    setLastTouchedSide(null); // Reset last touched side
   };
 
   const handleRemoveWeight = (weightId, side) => {
     if (side === "left") {
       setLeftPanWeights((prev) => prev.filter((id) => id !== weightId));
-    } else {
+    } else if (side === "right") {
       setRightPanWeights((prev) => prev.filter((id) => id !== weightId));
     }
     setAvailableWeights((prev) => [...prev, weightId]);
@@ -82,8 +59,8 @@ const WorkloadSatisfaction = () => {
   };
 
   const rotationAngle = calculateRotation();
-  const leftPanOffset = calculatePanOffset(-rotationAngle); // Left pan moves opposite
-  const rightPanOffset = calculatePanOffset(rotationAngle); // Right pan moves in sync
+  const leftPanOffset = calculatePanOffset(-rotationAngle);
+  const rightPanOffset = calculatePanOffset(rotationAngle);
 
   return (
     <Box
@@ -98,7 +75,6 @@ const WorkloadSatisfaction = () => {
         backgroundColor: "#F9FAFC",
         borderRadius: "12px",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-        overflow: "hidden",
       }}
     >
       <Typography
@@ -107,7 +83,6 @@ const WorkloadSatisfaction = () => {
           fontWeight: 600,
           marginBottom: "1rem",
           color: "#333",
-          textAlign: "center",
         }}
       >
         Workload Satisfaction
@@ -129,13 +104,22 @@ const WorkloadSatisfaction = () => {
           display: "flex",
           justifyContent: "space-between",
           flexDirection: { xs: "column", md: "row" },
-          alignItems: { xs: "center", md: "flex-end" },
+          alignItems: "flex-end",
           width: "100%",
           position: "relative",
         }}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
       >
+        {/* Horizontal Line */}
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: "-4px",
+            left: "0",
+            right: "0",
+            height: "4px",
+            backgroundColor: "#142850",
+          }}
+        />
         {/* Available Weights */}
         <Box
           sx={{
@@ -152,10 +136,7 @@ const WorkloadSatisfaction = () => {
               alt={`Weight ${id}`}
               draggable
               onDragStart={(e) => handleDragStart(e, id)}
-              onTouchStart={() => {
-                setDraggedWeight(id);
-                setDragging(true);
-              }}
+              onTouchStart={() => setDraggedWeight(id)}
               style={{
                 width: "50px",
                 cursor: "pointer",
@@ -197,7 +178,7 @@ const WorkloadSatisfaction = () => {
               top: "50px",
               left: "50%",
               transform: `translateX(-50%) rotate(${rotationAngle}deg)`,
-              transformOrigin: "center center",
+              transformOrigin: "center center", // Ensure rotation happens around the center
               width: "250px",
             }}
           />
@@ -206,15 +187,15 @@ const WorkloadSatisfaction = () => {
           <Box
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => handleDrop(e, "left")}
-            data-side="left"
+            onTouchEnd={(e) => handleDrop(e, "left")}
             sx={{
               position: "absolute",
               left: "10%",
-              top: `${80 + leftPanOffset}px`,
+              top: `${80 + leftPanOffset}px`, // Dynamic vertical positioning
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              transition: "top 0.3s ease",
+              transition: "top 0.3s ease", // Smooth transition for vertical movement
             }}
           >
             <img
@@ -241,6 +222,7 @@ const WorkloadSatisfaction = () => {
                   draggable
                   onDragStart={(e) => handleDragStart(e, id)}
                   onClick={() => handleRemoveWeight(id, "left")}
+                  onTouchStart={() => handleRemoveWeight(id, "left")}
                   style={{
                     width: "25px",
                     cursor: "pointer",
@@ -254,15 +236,15 @@ const WorkloadSatisfaction = () => {
           <Box
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => handleDrop(e, "right")}
-            data-side="right"
+            onTouchEnd={(e) => handleDrop(e, "right")}
             sx={{
               position: "absolute",
               right: "10%",
-              top: `${80 + rightPanOffset}px`,
+              top: `${80 + rightPanOffset}px`, // Dynamic vertical positioning
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              transition: "top 0.3s ease",
+              transition: "top 0.3s ease", // Smooth transition for vertical movement
             }}
           >
             <img
@@ -289,6 +271,7 @@ const WorkloadSatisfaction = () => {
                   draggable
                   onDragStart={(e) => handleDragStart(e, id)}
                   onClick={() => handleRemoveWeight(id, "right")}
+                  onTouchStart={() => handleRemoveWeight(id, "right")}
                   style={{
                     width: "25px",
                     cursor: "pointer",
