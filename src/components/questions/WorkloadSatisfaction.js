@@ -21,7 +21,8 @@ const WorkloadSatisfaction = () => {
   const handleDrop = (e, side) => {
     e.preventDefault();
     const weightId =
-      draggedWeight || (e.dataTransfer && parseInt(e.dataTransfer.getData("weight"), 10));
+      draggedWeight ||
+      (e.dataTransfer && parseInt(e.dataTransfer.getData("weight"), 10));
 
     if (weightId && availableWeights.includes(weightId)) {
       setAvailableWeights((prev) => prev.filter((id) => id !== weightId));
@@ -75,6 +76,7 @@ const WorkloadSatisfaction = () => {
         backgroundColor: "#F9FAFC",
         borderRadius: "12px",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+        overflow: "hidden",
       }}
     >
       <Typography
@@ -83,6 +85,7 @@ const WorkloadSatisfaction = () => {
           fontWeight: 600,
           marginBottom: "1rem",
           color: "#333",
+          textAlign:"center"
         }}
       >
         Workload Satisfaction
@@ -98,13 +101,27 @@ const WorkloadSatisfaction = () => {
       >
         Add the weight to indicate how you feel about your current workload
       </Typography>
+      <Typography
+        variant="body2"
+        sx={{
+          fontSize: "1rem",
+          color: "#555",
+          maxWidth: "500px",
+          marginBottom: "2rem",
+          textAlign: "center",
+        }}
+      >
+        Drag weights to the pans or tap on a weight to select it, then tap a pan
+        to add it. Tap on weights in the pans to remove them and return them to
+        the available weights.
+      </Typography>
 
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           flexDirection: { xs: "column", md: "row" },
-          alignItems: "flex-end",
+          alignItems: {xs:"center",sm:"flex-end"},
           width: "100%",
           position: "relative",
         }}
@@ -138,7 +155,7 @@ const WorkloadSatisfaction = () => {
               onDragStart={(e) => handleDragStart(e, id)}
               onTouchStart={() => setDraggedWeight(id)}
               style={{
-                width: "50px",
+                width: "40px",
                 cursor: "pointer",
                 zIndex: 2,
               }}
