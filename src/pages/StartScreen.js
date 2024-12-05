@@ -30,7 +30,7 @@ const StartScreen = () => {
       <Typography
         variant="h1"
         sx={{
-          fontSize: "4rem", // 48px for "WELCOME TO"
+          fontSize: {xs:"3.5rem",sm:"4rem"}, // 48px for "WELCOME TO"
           fontWeight: 200,
           letterSpacing: "0.2rem", // Slight letter spacing for elegance
           marginBottom: "1rem",
@@ -41,7 +41,7 @@ const StartScreen = () => {
       <Typography
         variant="h2"
         sx={{
-          fontSize: "3rem", // 64px for "INSIGHTHUB"
+          fontSize: {xs:"2.5rem",sm:"3rem"}, // 64px for "INSIGHTHUB"
           fontWeight: 700,
           textTransform: "uppercase", // Match uppercase style
           marginBottom: "2rem",
