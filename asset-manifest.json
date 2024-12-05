@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/employee-experience-app/static/css/main.e6c13ad2.css",
+    "main.js": "/employee-experience-app/static/js/main.d0846a40.js",
+    "static/js/453.d8c86f01.chunk.js": "/employee-experience-app/static/js/453.d8c86f01.chunk.js",
+    "static/media/Communicate.svg": "/employee-experience-app/static/media/Communicate.0dc41c33f18a0eae1bad50569075dfea.svg",
+    "static/media/Hydrated.svg": "/employee-experience-app/static/media/Hydrated.edf7204338392853607e22c890f42212.svg",
+    "static/media/Excercise.svg": "/employee-experience-app/static/media/Excercise.24824c1581fb7954af5cdc8a07ea905a.svg",
+    "static/media/Took A Break.svg": "/employee-experience-app/static/media/Took A Break.aa3c9977595f394faee5c31cca08049d.svg",
+    "static/media/background.webp": "/employee-experience-app/static/media/background.c8ad15ccd339e66f4247.webp",
+    "static/media/Dead Face.svg": "/employee-experience-app/static/media/Dead Face.1d2dfd977e9a2eafdbb04a035b62301e.svg",
+    "static/media/Rotating Beam.svg": "/employee-experience-app/static/media/Rotating Beam.74d44b4e8716a6bb8e488673e9975d2e.svg",
+    "static/media/Recognition - Face.svg": "/employee-experience-app/static/media/Recognition - Face.61fd7919507fa49eb47b31b4b6a46009.svg",
+    "static/media/Unhappy Face.svg": "/employee-experience-app/static/media/Unhappy Face.544e3948b3d50a18fbd33d87966516ec.svg",
+    "static/media/Angry Face.svg": "/employee-experience-app/static/media/Angry Face.ef62575cc0df58883d3be694f1c955ce.svg",
+    "static/media/Smile Face.svg": "/employee-experience-app/static/media/Smile Face.6c1d2cbaa8d78bec00f2668bcefd556d.svg",
+    "static/media/WE - Uncomftorable.svg": "/employee-experience-app/static/media/WE - Uncomftorable.45e100a852fbf42c68ab15877bd35938.svg",
+    "static/media/Very Supported.svg": "/employee-experience-app/static/media/Very Supported.c563f899766935d141ddee6609cfbe39.svg",
+    "static/media/WE - Neutral Face.svg": "/employee-experience-app/static/media/WE - Neutral Face.ad72321dfbfd3e1bb1bd71582d497b97.svg",
+    "static/media/Happy Face.svg": "/employee-experience-app/static/media/Happy Face.718d4534fc4a77d8bb768f350239d6b8.svg",
+    "static/media/WE - Minor Discomfort.svg": "/employee-experience-app/static/media/WE - Minor Discomfort.85d7cb31f7c083bd3d99ecefe9e0c416.svg",
+    "static/media/WE - Relaxed Face.svg": "/employee-experience-app/static/media/WE - Relaxed Face.3e2f531521fc89e6e8bddcc7050328bf.svg",
+    "static/media/Beam.svg": "/employee-experience-app/static/media/Beam.4a67c676114427928ee766bafd9b1f57.svg",
+    "static/media/Well Supported.svg": "/employee-experience-app/static/media/Well Supported.97c1377f1f9408aa13b79ab6aa7cb010.svg",
+    "static/media/Weight.svg": "/employee-experience-app/static/media/Weight.17a8cce8816826cbd812037038ad40e0.svg",
+    "static/media/Recognition - No.svg": "/employee-experience-app/static/media/Recognition - No.14c8e7ccd88f45c9fd7f9f7dee08115e.svg",
+    "static/media/Recognition - Yes.svg": "/employee-experience-app/static/media/Recognition - Yes.667ff7e6a63b2a9eb7387e701d10ff7e.svg",
+    "static/media/Slightly Supported.svg": "/employee-experience-app/static/media/Slightly Supported.81484f6f9e6bfda6181e91289d17789e.svg",
+    "static/media/Weighing Pan.svg": "/employee-experience-app/static/media/Weighing Pan.b54235ebebf49c7ff90af4816db7d9c8.svg",
+    "static/media/Engagement Bar.svg": "/employee-experience-app/static/media/Engagement Bar.d5fd1bb001d2c30de0e69c14117120db.svg",
+    "index.html": "/employee-experience-app/index.html",
+    "static/media/Not Supported.svg": "/employee-experience-app/static/media/Not Supported.faf8d984addc9521e4fc510012fafb5f.svg",
+    "static/media/Not Yet.svg": "/employee-experience-app/static/media/Not Yet.03f576ebed6595e45b01d26ea69b8003.svg",
+    "static/media/Engagement Meter Hand.svg": "/employee-experience-app/static/media/Engagement Meter Hand.bf26444f69ad63868c50c82f4b07dbee.svg",
+    "main.e6c13ad2.css.map": "/employee-experience-app/static/css/main.e6c13ad2.css.map",
+    "main.d0846a40.js.map": "/employee-experience-app/static/js/main.d0846a40.js.map",
+    "453.d8c86f01.chunk.js.map": "/employee-experience-app/static/js/453.d8c86f01.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.d0846a40.js"
+  ]
+}
