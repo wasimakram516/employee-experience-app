@@ -1,70 +1,183 @@
-# Getting Started with Create React App
+# Employee Experience Machine App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The **Employee Experience Machine App** is a React-based platform for measuring and enhancing employee engagement and satisfaction. This app provides interactive components to gather user feedback dynamically and visually.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Interactive Components**:
+  - Workload satisfaction visualized via drag-and-drop weights.
+  - Engagement levels determined via a slider-controlled needle meter.
+  - Energy levels tracked interactively.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Dynamic Feedback**: Real-time updates and user-friendly interfaces.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- **Frontend**: React.js, Material-UI
+- **Styling**: CSS, Material-UI
+- **Assets**: Custom SVGs and images for visualization.
+- **State Management**: React Hooks (`useState`, `useRef`).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Installation and Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Node.js**: [Download here](https://nodejs.org/)
+- **npm** (comes with Node.js) or **yarn**.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Steps
 
-### `npm run eject`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/wasimakram516/employee-experience-machine.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd employee-experience-machine
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Directory Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```plaintext
+employee-experience-app/
+│
+├── public/                 # Public assets
+│   ├── index.html          # Main HTML file
+│   └── assets/             # Images, SVGs, and static assets
+│
+├── src/                    # Source code
+│   ├── components/         # React components
+│   │   ├── questions/      # Question-specific components
+│   │   │   ├── EnergyLevel.js                # Energy level interaction
+│   │   │   ├── Engagement.js                 # Engagement meter with slider
+│   │   │   ├── ExpressYourself.js            # Employee feedback form
+│   │   │   ├── MoodCheck.js                  # Mood tracking
+│   │   │   ├── Recognition.js                # Recognition feedback module
+│   │   │   ├── TeamDynamicsInsight.js        # Team dynamics insights
+│   │   │   ├── WellnessPoll.js               # Employee wellness polling
+│   │   │   ├── WorkEnvironmentFeedback.js    # Work environment feedback form
+│   │   │   └── WorkloadSatisfaction.js       # Workload balance interaction
+│   │   ├── Navbar.js        # Navigation bar
+│   ├── App.js               # Main application entry
+│   ├── index.js             # React entry point
+│   ├── theme.js             # Theme customization
+│   ├── styles/              # Global styles
+│   ├── reportWebVitals.js   # Web Vitals reporting
+│   ├── setupTests.js        # Testing setup
+│
+├── .gitignore              # Git ignore file
+├── package.json            # Project configuration
+├── package-lock.json       # Dependency lock file
+└── README.md               # Project documentation
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Components Overview
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Navbar.js
+- A navigation bar to switch between different components.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Questions Components
+- **EnergyLevel.js**:
+  - Interactive module to track energy levels.
+  - Utilizes drag-and-drop for dynamic feedback.
+- **Engagement.js**:
+  - A slider-controlled needle to measure engagement levels.
+  - Real-time engagement level feedback (`Low`, `Moderate`, `High`).
+- **ExpressYourself.js**:
+  - Feedback form for employees to express their views.
+  - Simple text-based inputs.
+- **MoodCheck.js**:
+  - A graphical representation of mood levels.
+  - Drag-and-drop for mood tracking.
+- **Recognition.js**:
+  - Module for recognizing and appreciating colleagues.
+  - Includes dropdowns and text areas.
+- **TeamDynamicsInsight.js**:
+  - A tool to measure and visualize team dynamics.
+  - Charts and interactive elements for insight visualization.
+- **WellnessPoll.js**:
+  - Polling mechanism for employee wellness.
+  - Multiple-choice polling with results summary.
+- **WorkEnvironmentFeedback.js**:
+  - Form-based feedback for improving the work environment.
+  - Includes ratings and textual suggestions.
+- **WorkloadSatisfaction.js**:
+  - Visual representation of workload satisfaction using drag-and-drop weights.
+  - Dynamic balancing visualization.
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Deployment to GitHub Pages
 
-### Analyzing the Bundle Size
+1. Install the `gh-pages` package:
+   ```bash
+   npm install gh-pages --save-dev
+   ```
+2. Add the following scripts to `package.json`:
+   ```json
+   "homepage": "https://wasimakram516.github.io/employee-experience-machine",
+   "scripts": {
+     "predeploy": "npm run build",
+     "deploy": "gh-pages -d build"
+   }
+   ```
+3. Deploy the app:
+   ```bash
+   npm run deploy
+   ```
+4. Access your deployed app at:
+   [https://wasimakram516.github.io/employee-experience-machine](https://wasimakram516.github.io/employee-experience-machine).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add feature-name"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a pull request.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## License
 
-### Deployment
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Wasim Akram**  
+GitHub: [@wasimakram516](https://github.com/wasimakram516)  
+Email: [contact@wasimakram.com](mailto:contact@wasimakram.com)
+
+---

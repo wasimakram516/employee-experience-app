@@ -26,7 +26,7 @@ const WorkEnvironmentFeedback = () => {
         flexDirection: { xs: "column", sm: "row" }, // Stack vertically on small screens
         justifyContent: "space-between",
         alignItems: "center",
-        height: "calc(100vh - 200px)",
+        minHeight: "calc(100vh - 200px)",
         padding: "2rem",
         boxSizing: "border-box",
         borderRadius: "12px",
