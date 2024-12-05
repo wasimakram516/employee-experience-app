@@ -178,6 +178,6 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 **Wasim Akram**  
 GitHub: [@wasimakram516](https://github.com/wasimakram516)  
-Email: [contact@wasimakram.com](mailto:mr.saim516@gmail.com)
+Email: [mr.saim516@gmail.com](mailto:mr.saim516@gmail.com)
 
 ---
