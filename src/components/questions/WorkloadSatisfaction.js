@@ -121,7 +121,7 @@ const WorkloadSatisfaction = () => {
           display: "flex",
           justifyContent: "space-between",
           flexDirection: { xs: "column", md: "row" },
-          alignItems: {xs:"center",sm:"flex-end"},
+          alignItems: {xs:"center", md:"flex-end"}, 
           width: "100%",
           position: "relative",
         }}
