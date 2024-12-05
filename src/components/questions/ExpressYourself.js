@@ -16,7 +16,7 @@ const ExpressYourself = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "calc(100vh - 200px)",
+        minHeight: "calc(100vh - 200px)",
         padding: "2rem",
         boxSizing: "border-box",
         backgroundColor: "background.default",

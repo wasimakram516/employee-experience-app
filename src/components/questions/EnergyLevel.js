@@ -34,7 +34,7 @@ const EnergyLevel = () => {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        height: "calc(100vh - 200px)", // Adjust height to fit in the dashboard
+        minHeight: "calc(100vh - 200px)", // Adjust height to fit in the dashboard
         padding: "2rem",
         boxSizing: "border-box",
         borderRadius: "12px",

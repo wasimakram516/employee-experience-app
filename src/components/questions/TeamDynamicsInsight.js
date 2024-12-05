@@ -35,7 +35,7 @@ const TeamDynamicsInsight = () => {
         alignItems: "center",
         justifyContent: "center",
         padding: "2rem",
-        height: "calc(100vh - 200px)",
+        minHeight: "calc(100vh - 200px)",
         boxSizing: "border-box",
         backgroundColor: "background.default",
         borderRadius: "12px",

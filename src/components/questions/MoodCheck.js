@@ -28,7 +28,7 @@ const MoodCheck = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "calc(100vh - 200px)", // Adjust height to fit in dashboard with space for navbar
+        minHeight: "calc(100vh - 200px)", // Adjust height to fit in dashboard with space for navbar
         backgroundColor: "background.default", // Light background for a clean look
         padding: "2rem",
         boxSizing: "border-box",
