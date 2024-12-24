@@ -7,11 +7,8 @@ import SmileFace from "../../assets/moods/Smile Face.svg";
 import HappyFace from "../../assets/moods/Happy Face.svg";
 
 const MoodCheck = () => {
-  const [mood, setMood] = useState(3);
-
-  const handleMoodChange = (event, newValue) => {
-    setMood(newValue);
-  };
+  const [sliderValue, setSliderValue] = useState(3); // Continuous slider value
+  const [highlightedMood, setHighlightedMood] = useState(3); // Threshold-based mood
 
   const emojiList = [
     { value: 1, src: AngryFace, alt: "Angry" },
@@ -20,6 +17,22 @@ const MoodCheck = () => {
     { value: 4, src: SmileFace, alt: "Smile" },
     { value: 5, src: HappyFace, alt: "Happy" },
   ];
+
+  const thresholds = emojiList.map((emoji) => emoji.value);
+
+  const handleMoodChange = (event, newValue) => {
+    setSliderValue(newValue);
+
+    // Determine the closest threshold and update highlightedMood
+    const closestMood = thresholds.reduce((prev, curr) =>
+      Math.abs(curr - newValue) < Math.abs(prev - newValue) ? curr : prev
+    );
+
+    // Only update the highlighted mood if it changes
+    if (closestMood !== highlightedMood) {
+      setHighlightedMood(closestMood);
+    }
+  };
 
   return (
     <Box
@@ -79,7 +92,7 @@ const MoodCheck = () => {
             alt={emoji.alt}
             style={{
               width: "48px",
-              filter: mood === emoji.value ? "none" : "grayscale(100%)", // Highlight selected emoji
+              filter: highlightedMood === emoji.value ? "none" : "grayscale(100%)", // Highlight selected emoji
               transition: "filter 0.3s ease-in-out", // Smooth transition
             }}
           />
@@ -88,9 +101,9 @@ const MoodCheck = () => {
 
       {/* Slider */}
       <Slider
-        value={mood}
+        value={sliderValue}
         onChange={handleMoodChange}
-        step={1}
+        step={0.01} // Smooth slider movement
         min={1}
         max={5}
         sx={{

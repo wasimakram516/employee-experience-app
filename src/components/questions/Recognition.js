@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, TextField, Autocomplete, Button } from "@mui/material";
 import FaceIcon from "../../assets/recognition/Recognition - Face.svg";
 import YesIcon from "../../assets/recognition/Recognition - Yes.svg";
 import NoIcon from "../../assets/recognition/Recognition - No.svg";
 
 const Recognition = () => {
   const [selectedOption, setSelectedOption] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [entries, setEntries] = useState(["John Doe", "Jane Smith", "Emily Davis"]); // Dummy initial entries
 
   const options = [
     { label: "Yes", icon: YesIcon, value: "yes" },
@@ -14,6 +16,14 @@ const Recognition = () => {
 
   const handleClick = (value) => {
     setSelectedOption(value);
+    if (value === "no") setInputValue(""); // Clear input when "No" is selected
+  };
+
+  const handleSubmit = () => {
+    if (inputValue && !entries.includes(inputValue)) {
+      setEntries([...entries, inputValue]); // Add new entry to the list
+    }
+    setInputValue(""); // Clear the input field
   };
 
   return (
@@ -48,7 +58,7 @@ const Recognition = () => {
           fontSize: "1.25rem",
           color: "#666",
           marginBottom: "2rem",
-          textAlign:"center"
+          textAlign: "center",
         }}
       >
         Would you like to recognise a colleague today?
@@ -78,6 +88,7 @@ const Recognition = () => {
           display: "flex",
           justifyContent: "center",
           gap: "2rem",
+          marginBottom: selectedOption === "yes" ? "1.5rem" : "0",
         }}
       >
         {options.map((option) => (
@@ -90,18 +101,27 @@ const Recognition = () => {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              padding: "1rem",
-              borderRadius: "50%",
+              padding: "1.5rem",
+              borderRadius: "12px",
               width: "100px",
               height: "100px",
-              transition: "filter 0.3s ease-in-out",
+              transition: "background-color 0.3s ease-in-out",
+              boxShadow:
+                selectedOption === option.value
+                  ? "0px 4px 10px rgba(0, 0, 0, 0.2)"
+                  : "none",
+              backgroundColor:
+                selectedOption === option.value ? "#E0F7FA" : "transparent",
+              "&:hover": {
+                backgroundColor: "#F1F1F1",
+              },
             }}
           >
             <img
               src={option.icon}
               alt={option.label}
               style={{
-                width: "70%",
+                width: "100%",
                 filter:
                   selectedOption === option.value ? "none" : "grayscale(100%)",
                 transition: "filter 0.3s ease-in-out",
@@ -113,9 +133,7 @@ const Recognition = () => {
                 marginTop: "0.5rem",
                 color: selectedOption === option.value ? "#333" : "#666",
                 fontWeight: selectedOption === option.value ? "bold" : "normal",
-                filter:
-                  selectedOption === option.value ? "none" : "grayscale(100%)",
-                fontSize: selectedOption === option.value ? "1.15rem" : "1rem"
+                fontSize: selectedOption === option.value ? "1.15rem" : "1rem",
               }}
             >
               {option.label}
@@ -123,6 +141,51 @@ const Recognition = () => {
           </Box>
         ))}
       </Box>
+
+      {/* Text Box and Dropdown (Appears for "Yes") */}
+      {selectedOption === "yes" && (
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: "400px",
+            marginTop: "1rem",
+            textAlign: "center",
+          }}
+        >
+          <Autocomplete
+            freeSolo
+            options={entries}
+            value={inputValue}
+            onInputChange={(event, newValue) => setInputValue(newValue)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Recognize Colleague"
+                placeholder="Enter colleague name"
+                variant="outlined"
+                sx={{
+                  borderRadius: "8px",
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "8px",
+                  },
+                }}
+              />
+            )}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              marginTop: "1rem",
+              padding: "0.75rem 2rem",
+              borderRadius: "8px",
+            }}
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 };

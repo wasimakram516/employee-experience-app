@@ -2,29 +2,26 @@ import React, { useState } from "react";
 import { Box, Typography, Slider } from "@mui/material";
 
 const EnergyLevel = () => {
-  const [energy, setEnergy] = useState(2); // Default energy level
+  const [sliderValue, setSliderValue] = useState(0); // Smooth slider value
+  const [batteryLevel, setBatteryLevel] = useState(5); // Discrete battery level (0 to 100)
 
   const handleEnergyChange = (event, newValue) => {
-    setEnergy(newValue);
+    setSliderValue(newValue); // Update slider value smoothly
+
+    // Calculate the closest increment of 5% for the battery
+    const increment = Math.round((newValue / 5) * 100);
+    if (increment !== batteryLevel) {
+      setBatteryLevel(increment); // Update battery level only if it changes
+    }
   };
 
-  // Calculate fill height and color based on energy level
-  const getFillHeight = (value) => `${value * 20}%`; // 20% per level (5 levels = 100%)
-  const getFillColor = (value) => {
-    switch (value) {
-      case 1:
-        return "#FF5B5B"; // Red for low energy
-      case 2:
-        return "#FFC300"; // Yellow for moderate energy
-      case 3:
-        return "#8BC34A"; // Light green for good energy
-      case 4:
-        return "#4CAF50"; // Dark green for high energy
-      case 5:
-        return "#388E3C"; // Deep green for full energy
-      default:
-        return "#E0E0E0"; // Default grey
-    }
+  // Determine the battery fill color based on its level
+  const getFillColor = (level) => {
+    if (level <= 20) return "#FF5B5B"; // Red for low energy
+    if (level <= 40) return "#FFC300"; // Yellow for moderate energy
+    if (level <= 60) return "#8BC34A"; // Light green for good energy
+    if (level <= 80) return "#4CAF50"; // Dark green for high energy
+    return "#388E3C"; // Deep green for full energy
   };
 
   return (
@@ -94,11 +91,11 @@ const EnergyLevel = () => {
         >
           {/* Vertical Slider */}
           <Slider
-            value={energy}
+            value={sliderValue}
             onChange={handleEnergyChange}
-            step={1}
-            min={1}
-            max={5} // Updated to allow 5 levels
+            step={0.01} // Smooth slider movement
+            min={0}
+            max={5}
             orientation="vertical"
             sx={{
               height: "200px", // Match slider height with the battery
@@ -110,7 +107,7 @@ const EnergyLevel = () => {
                 border: "2px solid #4A90E2", // Blue border for thumb
               },
               "& .MuiSlider-track": {
-                backgroundColor: getFillColor(energy), // Match slider track color with battery fill
+                backgroundColor: getFillColor(batteryLevel), // Match slider track color with battery fill
               },
               "& .MuiSlider-rail": {
                 backgroundColor: "#E0E0E0", // Light gray for unused range
@@ -135,8 +132,8 @@ const EnergyLevel = () => {
                 position: "absolute",
                 bottom: 0,
                 width: "100%",
-                height: getFillHeight(energy), // Dynamically adjust fill height
-                backgroundColor: getFillColor(energy), // Fill color based on energy level
+                height: `${batteryLevel}%`, // Dynamically adjust fill height (0 to 100%)
+                backgroundColor: getFillColor(batteryLevel), // Fill color based on battery level
                 transition: "height 0.3s ease, background-color 0.3s ease", // Smooth transitions
               }}
             />

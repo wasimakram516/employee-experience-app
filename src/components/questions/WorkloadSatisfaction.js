@@ -112,7 +112,7 @@ const WorkloadSatisfaction = () => {
         }}
       >
         Drag weights to the pans or tap on a weight to select it, then tap a pan
-        to add it. Tap on weights in the pans to remove them and return them to
+        to add it. <br/>Tap on weights in the pans to remove them and return them to
         the available weights.
       </Typography>
 
